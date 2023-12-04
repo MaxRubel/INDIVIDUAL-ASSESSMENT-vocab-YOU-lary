@@ -7,7 +7,8 @@ import navigationEvents from '../events/navigationEvents';
 import { getCards } from '../api/cardsData';
 import { showCards } from '../pages/cards';
 
-const startApp = () => {
+const startApp = (user) => {
+  console.warn(user.uid);
   domBuilder(); // BUILD THE DOM
   domEvents(); // ADD THE EVENT LISTENTERS TO THE DOM
   formEvents(); // ADD FORM EVENT LISTENTERS TO THE DOM

@@ -20,8 +20,8 @@ const showCards = (array) => {
       <h5 class="card-title">${card.title}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${card.language}</h6>
       <p class="card-text">${card.definition}</p>
-      <a href="#" class="card-link">Update Card</a>
-      <a href="#" class="card-link">Delete Card</a>
+      <a href="#" id="update-card--${card.firebaseKey}" class="card-link">Update Card</a>
+      <a href="#" id="delete-card--${card.firebaseKey}" class="card-link">Delete Card</a>
     </div>
   </div>`;
   });
