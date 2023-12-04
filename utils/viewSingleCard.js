@@ -2,7 +2,7 @@ import clearDom from './clearDom';
 import backButton from '../components/shared/backButton';
 import renderToDom from './renderToDom';
 
-const updateCardForm = (card) => {
+const updateCardForm = (user, card) => {
   clearDom();
   const domString = `
   <form id="updateCard">
@@ -20,7 +20,7 @@ const updateCardForm = (card) => {
   <div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
 </div>`;
   renderToDom('#cards', domString);
-  backButton();
+  backButton(user);
 };
 
 export default updateCardForm;

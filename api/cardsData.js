@@ -1,8 +1,8 @@
 const endpoint = 'https://vocabcards-aeca9-default-rtdb.firebaseio.com';
 
 // GET ALL CARDS
-const getCards = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cards.json`, {
+const getCards = (user) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json?orderBy="uid"&equalTo="${user.uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
