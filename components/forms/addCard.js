@@ -1,7 +1,6 @@
 import clearDom from '../../utils/clearDom';
 import renderToDom from '../../utils/renderToDom';
-import { getCards } from '../../api/cardsData';
-import { showCards } from '../../pages/cards';
+import backButton from '../shared/backButton';
 
 const addCardForm = () => {
   clearDom();
@@ -29,9 +28,7 @@ const addCardForm = () => {
     <div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
     `;
   renderToDom('#form-container', domString);
-  document.querySelector('#showCards').addEventListener('click', () => {
-    getCards().then(showCards);
-  });
+  backButton();
 };
 
 export default addCardForm;
