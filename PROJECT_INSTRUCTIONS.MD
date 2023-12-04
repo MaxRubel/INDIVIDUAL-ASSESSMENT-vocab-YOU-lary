@@ -63,18 +63,18 @@ Create issue tickets from the items below to help you get started.
 
 **The most basic requirement for this project is that a user can:**
 
-- [ ] Login and Logout of the application using Firebase Google Authentication
+- [x] Login and Logout of the application using Firebase Google Authentication
 - [ ] only see the vocabulary entries that they created
-- [ ] CREATE a vocabulary entry:
-  - [ ] Title
-  - [ ] Definition
-  - [ ] Language/Tech
-  - [ ] Time submitted - Not on form. Handle in your JS
+- [x] CREATE a vocabulary entry:
+  - [x] Title
+  - [x] Definition
+  - [x] Language/Tech
+  - [x] Time submitted - Not on form. Handle in your JS
   - [ ] user ID - Not on form. Pull from User object.
-- [ ] READ THIER entries
-- [ ] UPDATE THEIR entries
-- [ ] DELETE THEIR entries
-- [ ] Filter by language/tech
+- [x] READ THIER entries
+- [x] UPDATE THEIR entries
+- [x] DELETE THEIR entries
+- [x] Filter by language/tech
 - [ ] Style your application using your own creativity!
 - [ ] No errors - linters should be clean
 

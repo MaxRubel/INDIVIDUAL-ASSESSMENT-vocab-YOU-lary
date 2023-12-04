@@ -8,15 +8,15 @@ import { getCards } from '../api/cardsData';
 import { showCards } from '../pages/cards';
 
 const startApp = (user) => {
-  console.warn(user.uid);
   domBuilder(); // BUILD THE DOM
-  domEvents(); // ADD THE EVENT LISTENTERS TO THE DOM
-  formEvents(); // ADD FORM EVENT LISTENTERS TO THE DOM
+  domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
+  formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
-  navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
+  navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
 
-  getCards().then(showCards);
+  getCards(user).then(showCards);
+  console.warn(user.uid);
 };
 
 export default startApp;

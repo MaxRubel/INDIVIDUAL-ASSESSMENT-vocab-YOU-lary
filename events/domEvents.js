@@ -5,38 +5,45 @@ import {
 } from '../api/cardsData';
 import updateCardForm from '../components/forms/updateCard';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.getElementById('addCardButton').addEventListener('click', addCardForm);
 
   document.querySelector('#main-container').addEventListener('click', (e) => {
-    // CLICK EVENT FOR CREATING AN UPDATE FORM
+    // CREATE NEW CARD FORM
+    if (e.target.id.includes('addCard')) {
+      addCardForm(user);
+    }
+    // CREATE UPDATE CARD FORM
     if (e.target.id.includes('update-card')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleCard(firebaseKey).then(updateCardForm);
+      getSingleCard(firebaseKey).then((data) => { updateCardForm(data, user); });
     }
 
-    // CLICK EVENT FOR DELETING A CARD
-    if (e.target.id.includes('delete-card')) {
-      // eslint-disable-next-line no-alert
-      if (window.confirm('Want to delete?')) {
-        const [, firebaseKey] = e.target.id.split('--');
-        deleteCard(firebaseKey).then(() => {
-          getCards().then(showCards);
-        });
-      }
-    }
+    // UPDATE CARD
     if (e.target.id.includes('updateCardButton')) {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
         title: document.querySelector('#title').value,
         language: document.querySelector('#language').value,
         definition: document.querySelector('#definition').value,
+        uid: user.uid,
         firebaseKey
       };
 
       updateCard(payload)
         .then(getCards)
         .then(showCards);
+    }
+
+    // DELETE CARD
+    if (e.target.id.includes('delete-card')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteCard(firebaseKey).then(() => {
+          getCards(user).then(showCards);
+        });
+      }
     }
   });
 };

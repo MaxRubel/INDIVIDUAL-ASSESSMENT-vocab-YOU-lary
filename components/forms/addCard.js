@@ -2,7 +2,7 @@ import clearDom from '../../utils/clearDom';
 import renderToDom from '../../utils/renderToDom';
 import backButton from '../shared/backButton';
 
-const addCardForm = () => {
+const addCardForm = (user) => {
   clearDom();
   const domString = `
     <form id="submitCard" class="mb-4">
@@ -28,7 +28,7 @@ const addCardForm = () => {
     <div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
     `;
   renderToDom('#form-container', domString);
-  backButton();
+  backButton(user);
 };
 
 export default addCardForm;

@@ -2,7 +2,7 @@ import clearDom from '../../utils/clearDom';
 import renderToDom from '../../utils/renderToDom';
 import backButton from '../shared/backButton';
 
-const updateCardForm = (card) => {
+const updateCardForm = (card, user) => {
   clearDom();
   const domString = `
   <form id="updateCard">
@@ -20,12 +20,7 @@ const updateCardForm = (card) => {
   <div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
 </div>`;
   renderToDom('#cards', domString);
-  backButton();
-  // document.querySelector('#main-container').addEventListener('click', (e) => {
-  //   // if (e.target.id.includes('updateCardButton')) {
-  //   //   console.warn('update-card-button');
-  //   // }
-  // });
+  backButton(user);
 };
 
 export default updateCardForm;
