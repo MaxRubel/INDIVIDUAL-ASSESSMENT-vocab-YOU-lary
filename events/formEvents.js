@@ -28,9 +28,6 @@ const formEvents = (user) => {
     }
 
     // UPDATE CARD EVENT;
-    if (e.target.id.includes('updateCardButton')) {
-      console.warn('update-card-button');
-    }
   });
 };
 

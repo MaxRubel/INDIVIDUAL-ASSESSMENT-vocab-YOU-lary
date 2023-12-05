@@ -1,16 +1,14 @@
 import addCardForm from '../components/forms/addCard';
 import { showCards } from '../pages/cards';
 import {
-  getCards, deleteCard, getSingleCard, updateCard
+  getCards, deleteCard, getSingleCard, updateCard,
 } from '../api/cardsData';
 import updateCardForm from '../components/forms/updateCard';
 
 const domEvents = (user) => {
-  document.getElementById('addCardButton').addEventListener('click', addCardForm);
-
   document.querySelector('#main-container').addEventListener('click', (e) => {
-    // CREATE NEW CARD FORM
-    if (e.target.id.includes('addCard')) {
+    // ADD CARD BUTTON PRESS
+    if (e.target.id.includes('addACard')) {
       addCardForm(user);
     }
     // CREATE UPDATE CARD FORM
@@ -18,7 +16,6 @@ const domEvents = (user) => {
       const [, firebaseKey] = e.target.id.split('--');
       getSingleCard(firebaseKey).then((data) => { updateCardForm(data, user); });
     }
-
     // UPDATE CARD
     if (e.target.id.includes('updateCardButton')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -34,7 +31,6 @@ const domEvents = (user) => {
         .then(getCards)
         .then(showCards);
     }
-
     // DELETE CARD
     if (e.target.id.includes('delete-card')) {
       // eslint-disable-next-line no-alert

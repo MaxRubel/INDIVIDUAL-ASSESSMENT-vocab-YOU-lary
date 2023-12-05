@@ -38,15 +38,15 @@ Make sure your Developer Tools are open at all times while working on this proje
 
 Create issue tickets from the items below to help you get started.
 
-- [ ] Setup your firebase project and create the `.env` file with your keys. (Reference the [Firebase videos](https://vimeo.com/showcase/codetracker-firebase) if you need help getting started)
-- [ ] Plan your project. Take no more than an hour to plan (ERD, Flow Chart, Postman)
-- [ ] `git clone YOUR_GITHUB_REPO_LINK`
-- [ ] `cd` into the directory
-- [ ] Run `npm install` to install your dependencies
-- [ ] Type `code .` to open the project in VS Code
-- [ ] `npm start` to start your server
-- [ ] Plan your project by creating the tickets you will work through using Github Projects
-- [ ] START CODING!
+- [x] Setup your firebase project and create the `.env` file with your keys. (Reference the [Firebase videos](https://vimeo.com/showcase/codetracker-firebase) if you need help getting started)
+- [x] Plan your project. Take no more than an hour to plan (ERD, Flow Chart, Postman)
+- [x] `git clone YOUR_GITHUB_REPO_LINK`
+- [x] `cd` into the directory
+- [x] Run `npm install` to install your dependencies
+- [x] Type `code .` to open the project in VS Code
+- [x] `npm start` to start your server
+- [x] Plan your project by creating the tickets you will work through using Github Projects
+- [x] START CODING!
 
 # MVP Requirements
 
@@ -64,19 +64,19 @@ Create issue tickets from the items below to help you get started.
 **The most basic requirement for this project is that a user can:**
 
 - [x] Login and Logout of the application using Firebase Google Authentication
-- [ ] only see the vocabulary entries that they created
+- [x] only see the vocabulary entries that they created
 - [x] CREATE a vocabulary entry:
   - [x] Title
   - [x] Definition
   - [x] Language/Tech
   - [x] Time submitted - Not on form. Handle in your JS
-  - [ ] user ID - Not on form. Pull from User object.
+  - [x] user ID - Not on form. Pull from User object.
 - [x] READ THIER entries
 - [x] UPDATE THEIR entries
 - [x] DELETE THEIR entries
 - [x] Filter by language/tech
-- [ ] Style your application using your own creativity!
-- [ ] No errors - linters should be clean
+- [x] Style your application using your own creativity!
+- [x] No errors - linters should be clean
 
 ## Stretch 1
 
@@ -88,7 +88,7 @@ Create issue tickets from the items below to help you get started.
 
 [Stretch 2 Wireframe](https://www.figma.com/file/UC3Gi8HFRkZY8OIMOAUgL4/Stretch-2)
 
-- [ ] Users can search vocabulary entries
+- [x] Users can search vocabulary entries
 - [ ] Users can add Language/Tech to the database and refrerence it on their vocabulary entries
 - [ ] Users can only see the Languages/Tech categories that they created
 
@@ -96,8 +96,8 @@ Create issue tickets from the items below to help you get started.
 
 [Stretch 3 Wireframe](https://www.figma.com/file/KgbkfaoRd5F8Q4qZ3G2Bg2/Stretch-3)
 
-- [ ] Users can mark an entry as public or private
+- [x] Users can mark an entry as public or private
 - [ ] Create a new navigation item called "Community" and on click of this item, users can see all the public entries
 - [ ] If an entry is public, anyone can READ it. If it is private, only the user who created it can see it.
-- [ ] If an entry is public, only the user who created it can CRUD on it
+- [] If an entry is public, only the user who created it can CRUD on it
 - [ ] If an entry is public, any user can copy the entry to their own set of entries and then CRUD on the new/copied entry

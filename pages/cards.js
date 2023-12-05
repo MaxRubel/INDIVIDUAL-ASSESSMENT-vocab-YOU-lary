@@ -9,22 +9,26 @@ const emptyCards = () => {
 const showCards = (array) => {
   clearDom();
 
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="addCardButton">Add A Card</button>';
+  const btnString = '<button class="btn btn-success btn-lg mb-4" id="addACard">Add A Card</button>';
   renderToDom('#addCardButton', btnString);
 
   let domString = '';
-  array.forEach((card) => {
-    domString += `
-    <div class="card" style="width: 18rem;">
+  if (array.length > 0) {
+    array.forEach((card) => {
+      domString += `
+    <div class="card" style="width: 18rem; height: 12rem;">
     <div class="card-body">
       <h5 class="card-title">${card.title}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${card.language}</h6>
       <p class="card-text">${card.definition}</p>
-      <a href="#" id="update-card--${card.firebaseKey}" class="card-link">Update Card</a>
-      <a href="#" id="delete-card--${card.firebaseKey}" class="card-link">Delete Card</a>
+      <a href="#" id="update-card--${card.firebaseKey}" class="card-link">Edit</a>
+      <a href="#" id="delete-card--${card.firebaseKey}" class="card-link">Delete</a>
     </div>
   </div>`;
-  });
+    });
+  } else {
+    domString = 'No Cards Found';
+  }
   renderToDom('#cards', domString);
 };
 

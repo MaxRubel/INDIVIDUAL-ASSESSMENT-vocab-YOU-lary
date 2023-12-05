@@ -3,8 +3,114 @@
 
 
 body {
-  background-color: black;
+  background: linear-gradient(to top, #003f69 0%, #3674B3 100%);
   color: white;
   text-align: center;
   margin-top: 100px;
+  background-repeat: no-repeat;
+}
+
+#main-container{
+width: 100%;
+height: 1400px;
+display: inline-block;
+flex-direction: row;
+justify-content: center;
+}
+
+#form-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cards{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-rows: auto;
+grid-row-gap: 1px;
+place-items: center;
+}
+
+.container-fluid{
+opacity: 90%;
+}
+
+// .navbar-collapse{
+//   @media (max-width: 400) {
+
+//     .navbar-expand-my>.container,
+//     .navbar-expand-my>.container-fluid,
+//     .navbar-expand-my>.container-sm,
+//     .navbar-expand-my>.container-md,
+//     .navbar-expand-my>.container-lg,
+//     .navbar-expand-my>.container-xl {
+//         padding-right: 0;
+//         padding-left: 0
+//     }
+// }
+// }
+
+#search.form-control{
+  margin-left:3%;
+  color: black;
+  height: 45px;
+  width: 300px;
+  margin-top: 5px;
+}
+.nav-link{
+  width: 100px;
+  margin: 8%;
+}
+.card-body{
+  color:black;
+}
+.card{
+  border-radius: 5%;
+  margin: 3%;
+}
+
+.card-text{
+  height: 4rem;
+}
+
+#addACard.btn{
+  background-color: rgba(0, 69, 133, 0.934);
+  border: 0px;
+}
+
+.mt-3{
+  background-color: rgba(0, 69, 133, 0.934);
+  margin-bottom: 3%;
+}
+
+.card-body{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.card-subtitle{
+  display: flex;
+  font-size: 14px;
+}
+
+.card-text{
+  display:flex;
+  font-size: 14px;
+}
+
+.card-link{
+  color:black;
+}
+
+.card-linkRed{
+  color: rgb(169, 0, 0);
+  margin:4%;
 }
