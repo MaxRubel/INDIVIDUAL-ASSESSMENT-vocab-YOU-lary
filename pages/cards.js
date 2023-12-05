@@ -23,6 +23,7 @@ const showCards = (array) => {
       <p class="card-text">${card.definition}</p>
       <a href="#" id="update-card--${card.firebaseKey}" class="card-link">Edit</a>
       <a href="#" id="delete-card--${card.firebaseKey}" class="card-link">Delete</a>
+      <div id="timeSubmitted" class="time">submitted on: ${card.timeSubmitted[1]}</div>
     </div>
   </div>`;
     });

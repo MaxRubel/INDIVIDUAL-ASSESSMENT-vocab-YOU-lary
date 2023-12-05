@@ -42,11 +42,22 @@ const navigationEvents = (user) => {
       });
   });
   document.getElementById('dateSubmitted').addEventListener('click', () => {
-    console.warn('dateSubmitted');
-    getCards(user)
-      .then(() => {
-        console.warn('time submitted');
+    getCards(user).then((cards) => {
+      cards.sort((a, b) => {
+        if (a.timeSubmitted[0] < b.timeSubmitted[0]) {
+          return -1;
+        }
+        if (a.timeSubmitted[0] > b.timeSubmitted[0]) {
+          return 1;
+        }
+        return 0;
       });
+      showCards(cards);
+    });
+    // getSingleCard('-Nkr6_6mlgnO0O2lcmYp')
+    //   .then((data) => {
+    //     console.warn(data.timeSubmitted.replace(/\D/g, ''));
+    //   });
   });
 
   // SEARCH FUNCTION
