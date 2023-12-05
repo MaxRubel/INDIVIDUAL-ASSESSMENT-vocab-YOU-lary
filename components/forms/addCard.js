@@ -9,9 +9,9 @@ const addCardForm = (user) => {
   </div>
   <div class="card" style="width: 18rem;">
   <div class="card-body">
-  <input type="text" class="form-control" id="title" placeholder="title" required>
-   <input type="text" class="form-control" id="language" placeholder="language" required>
-   <input type="text" class="form-control" id="definition" placeholder="definition" required>
+  <input type="text" class="form-control" id="title" placeholder="Title" required>
+   <input type="text" class="form-control" id="language" placeholder="Language" required>
+   <textarea class="form-control" id="definition" required placeholder="Definition"></textarea>
    <label for="private">Keep Private?</label>
     <input type="checkbox" id="private" value="private?" />
     <div id="submitButton"><button type="submit" id="submitButton" class="btn btn-primary mt-3">Add Card</button></div>

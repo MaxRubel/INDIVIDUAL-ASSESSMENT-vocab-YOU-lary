@@ -12,7 +12,7 @@ const updateCardForm = (card, user) => {
   <div class="card-body">
   <input type="text" class="form-control" id="title" value="${card.title}" required>
    <input type="text" class="form-control" id="language"  value="${card.language}" required>
-   <input type="text" class="form-control" id="definition" value="${card.definition}" required>
+   <textarea class="form-control" id="definition" required>${card.definition}</textarea>
    <label for="private">Keep Private?</label>
     <input type="checkbox" id="private" value="private?" />
     <div><a href="#" id="updateCardButton--${card.firebaseKey}" class="card-link">Update Card</a>
