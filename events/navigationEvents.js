@@ -1,7 +1,9 @@
-import { getCards } from '../api/cardsData';
+import { getCards, getCommunityCards } from '../api/cardsData';
 import { showCards } from '../pages/cards';
 import addCardForm from '../components/forms/addCard';
 import backButton from '../components/shared/backButton';
+import { getLangs } from '../api/languageData';
+import showLanguages from '../pages/languages';
 
 const navigationEvents = (user) => {
   document.getElementById('homeButton').addEventListener('click', () => {
@@ -26,7 +28,6 @@ const navigationEvents = (user) => {
       });
   });
   document.getElementById('langauge').addEventListener('click', () => {
-    console.warn('language');
     getCards(user)
       .then((cards) => {
         cards.sort((a, b) => {
@@ -54,10 +55,12 @@ const navigationEvents = (user) => {
       });
       showCards(cards);
     });
-    // getSingleCard('-Nkr6_6mlgnO0O2lcmYp')
-    //   .then((data) => {
-    //     console.warn(data.timeSubmitted.replace(/\D/g, ''));
-    //   });
+  });
+  document.getElementById('community').addEventListener('click', () => {
+    getCommunityCards().then(showCards);
+  });
+  document.getElementById('showLanguages').addEventListener('click', () => {
+    getLangs(user).then(showLanguages);
   });
 
   // SEARCH FUNCTION

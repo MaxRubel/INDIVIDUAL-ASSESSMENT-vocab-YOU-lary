@@ -1,8 +1,46 @@
 const endpoint = 'https://vocabcards-aeca9-default-rtdb.firebaseio.com';
 
-// GET ALL CARDS
+// GET USERS CARDS
 const getCards = (user) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/cards.json?orderBy="uid"&equalTo="${user.uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getAllCards = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+// GET COMMUNITY CARDS
+const getCommunityCards = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json?orderBy="private"&equalTo=false`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -75,5 +113,11 @@ const deleteCard = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 export {
-  addCard, updateCard, getCards, getSingleCard, deleteCard
+  getCommunityCards,
+  addCard,
+  updateCard,
+  getCards,
+  getSingleCard,
+  deleteCard,
+  getAllCards
 };

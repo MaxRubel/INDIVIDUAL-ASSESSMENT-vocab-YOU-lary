@@ -82,7 +82,7 @@ Create issue tickets from the items below to help you get started.
 
 [Stretch 1 Wireframe](https://www.figma.com/file/yZE38QzpoUWELA22gGZJve/Stretch-1)
 
-- [ ] Allow users to order entries alphabetically, newest, oldest
+- [X] Allow users to order entries alphabetically, newest, oldest
 
 ## Stretch 2
 
@@ -97,7 +97,7 @@ Create issue tickets from the items below to help you get started.
 [Stretch 3 Wireframe](https://www.figma.com/file/KgbkfaoRd5F8Q4qZ3G2Bg2/Stretch-3)
 
 - [x] Users can mark an entry as public or private
-- [ ] Create a new navigation item called "Community" and on click of this item, users can see all the public entries
-- [ ] If an entry is public, anyone can READ it. If it is private, only the user who created it can see it.
+- [X] Create a new navigation item called "Community" and on click of this item, users can see all the public entries
+- [X] If an entry is public, anyone can READ it. If it is private, only the user who created it can see it.
 - [] If an entry is public, only the user who created it can CRUD on it
 - [ ] If an entry is public, any user can copy the entry to their own set of entries and then CRUD on the new/copied entry
