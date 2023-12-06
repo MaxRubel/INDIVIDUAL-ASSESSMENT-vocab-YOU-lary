@@ -34,10 +34,14 @@ const navBar = () => {
               placeholder="Search Cards"
               aria-label="Search"
             />
+            <li class="nav-item">
+            <a class="nav-link" href="#" id="community">Community</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#" id="showLanguages">Languages</a>
             </li>
           </ul>
           <span class="navbar-text">
-            <div id="cart-button"></div>
             <div id="logout-button"></div>
           </span>
         </div>
