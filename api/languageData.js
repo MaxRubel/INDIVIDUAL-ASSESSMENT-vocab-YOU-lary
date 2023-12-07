@@ -1,5 +1,6 @@
 const endpoint = 'https://vocabcards-aeca9-default-rtdb.firebaseio.com';
 
+// GET FUNCTIONS
 const getLangs = (user) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages.json?orderBy="uid"&equalTo="${user.uid}"`, {
     method: 'GET',
@@ -38,6 +39,8 @@ const getAllLangs = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// CRUD FUNCTIONS
+// CREATE LANGUAGE
 const createLanguage = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages.json`, {
     method: 'POST',
@@ -51,6 +54,7 @@ const createLanguage = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// UPDATE LANGUAGE
 const updateLanguage = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -64,6 +68,20 @@ const updateLanguage = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// DELETE LANGUAGE
+const deleteLangauge = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/languages/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+// MERGE DATA FUNCTION
 const grabLanguageKey = (language) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages.json?orderBy="language"&equalTo="${language}"`, {
     method: 'GET',
@@ -87,5 +105,6 @@ export {
   updateLanguage,
   getLangs,
   getAllLangs,
-  grabLanguageKey
+  grabLanguageKey,
+  deleteLangauge
 };

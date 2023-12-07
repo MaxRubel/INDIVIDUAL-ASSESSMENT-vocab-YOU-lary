@@ -1,7 +1,7 @@
 import { getCards, getCommunityCards } from '../api/cardsData';
 import { showCards } from '../pages/cards';
 import addCardForm from '../components/forms/addCard';
-import backButton from '../components/shared/backButton';
+import backButton from '../components/shared/showCardsButton';
 import { getLangs } from '../api/languageData';
 import showLanguages from '../pages/languages';
 
