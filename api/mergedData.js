@@ -1,4 +1,6 @@
-import { getCards, addCard, updateCard } from './cardsData';
+import {
+  getCards, addCard, updateCard, getCardLanguages
+} from './cardsData';
 import { getLangs, grabLanguageKey } from './languageData';
 
 // GET CARD AND LANGUAGE DETAILS -- MERGE
@@ -27,10 +29,33 @@ const updateAndFormat = (payload) => new Promise((resolve, reject) => {
   grabLanguageKey(payload.language).then((data) => {
     const langKey = { lang_id: data[0].firebaseKey };
     const newPayload = { ...langKey, ...payload };
+
     updateCard(newPayload)
       .then(resolve)
       .catch(reject);
   });
 });
 
-export { addAndFormat, getAllDetails, updateAndFormat };
+// PATCH ALL CARDS POSESSING A SPECIFIC LANGUAGE
+const patchAllCardsbyLang = (payload) => new Promise((resolve, reject) => {
+  getCardLanguages(payload.firebaseKey).then((cards) => {
+    cards.forEach((card) => {
+      console.warn(card);
+      updateCard(
+        {
+          language: payload.language,
+          firebaseKey: card.firebaseKey
+        }
+      );
+    });
+  }).then(resolve)
+    .then(reject);
+});
+
+export {
+  addAndFormat,
+  getAllDetails,
+  updateAndFormat,
+  patchAllCardsbyLang,
+  getCardLanguages
+};
