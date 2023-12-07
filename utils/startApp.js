@@ -6,7 +6,6 @@ import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { getCards } from '../api/cardsData';
 import { showCards } from '../pages/cards';
-// import { showCards } from '../pages/cards';
 
 const startApp = (user) => {
   domBuilder(); // BUILD THE DOM

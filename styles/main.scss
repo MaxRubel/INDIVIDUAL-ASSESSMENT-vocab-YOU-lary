@@ -118,4 +118,17 @@ opacity: 90%;
   overflow: auto;
 }
 
-#languages{}
+#languages{
+  display: flex;
+  justify-content: center;
+}
+
+.crudLang{
+display: flex;
+justify-content: center;
+gap: 5%;
+}
+
+.deleteLang{
+  color: rgb(169, 0, 0);
+}

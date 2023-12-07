@@ -1,6 +1,6 @@
 import clearDom from '../../utils/clearDom';
 import renderToDom from '../../utils/renderToDom';
-import backButton from '../shared/backButton';
+import backButton from '../shared/showCardsButton';
 import selectLanguage from './selectLanguage';
 
 const updateCardForm = (obj = {}, user) => {

@@ -1,12 +1,11 @@
 import clearDom from '../../utils/clearDom';
 import renderToDom from '../../utils/renderToDom';
-import backButton from '../shared/backButton';
+import backButton from '../shared/showCardsButton';
 import selectLanguage from './selectLanguage';
 
 const addCardForm = (user) => {
   clearDom();
-  const domString = `<div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
-  <form id="submitCard">
+  const domString = `<div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div><form id="submitCard">
   </div>
   <div class="card" style="width: 18rem;">
   <div class="card-body">

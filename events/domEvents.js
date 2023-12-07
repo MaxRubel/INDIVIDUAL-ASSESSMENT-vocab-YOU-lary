@@ -3,40 +3,29 @@ import {
 } from '../api/cardsData';
 import updateCardForm from '../components/forms/updateCard';
 import addLanguageForm from '../components/forms/addALanguage';
-import { createLanguage, updateLanguage } from '../api/languageData';
+import {
+  createLanguage, getLangs, updateLanguage, deleteLangauge
+} from '../api/languageData';
 import submitSuccess from '../utils/submitSuccess';
 import { showCards } from '../pages/cards';
 import addCardForm from '../components/forms/addCard';
+import showLanguages from '../pages/languages';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
-    // ADD CARD BUTTON PRESS
+    // RENDER ADD CARD FORM -- BUTTON PRESS
     if (e.target.id.includes('addACard')) {
       addCardForm(user);
     }
-    // ADD LANGUAGE BUTTON PRESS
+    // RENDER ADD LANGUAGE FORM -- BUTTON PRESS
     if (e.target.id.includes('addALanguage')) {
       addLanguageForm(user);
     }
-    // CREATE UPDATE CARD FORM
+    // RENDER UPDATE CARD FORM -- BUTTON PRESS
     if (e.target.id.includes('update-card')) {
       const [, firebaseKey] = e.target.id.split('--');
       getSingleCard(firebaseKey).then((data) => { updateCardForm(data, user); });
     }
-    // // UPDATE CARD
-    // if (e.target.id.includes('updateCardButton')) {
-    //   const [, firebaseKey] = e.target.id.split('--');
-    //   const payload = {
-    //     title: document.querySelector('#title').value,
-    //     language: document.querySelector('#language').value,
-    //     definition: document.querySelector('#definition').value,
-    //     uid: user.uid,
-    //     firebaseKey
-    //   };
-    //   updateCard(payload)
-    //     .then(getCards)
-    //     .then(showCards);
-    // }
     // DELETE CARD
     if (e.target.id.includes('delete-card')) {
       // eslint-disable-next-line no-alert
@@ -47,6 +36,18 @@ const domEvents = (user) => {
         });
       }
     }
+    // DELETE LANGUAGE
+    if (e.target.id.includes('delete-lang')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteLangauge(firebaseKey).then(() => {
+          getLangs(user).then(showLanguages);
+        });
+      }
+    }
+
+    // NEED TO MOVE -->
     // ADD A LANGUAGE
     if (e.target.id.includes('submitLangButton')) {
       const payload = {

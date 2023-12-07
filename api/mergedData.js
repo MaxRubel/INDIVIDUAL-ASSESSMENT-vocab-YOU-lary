@@ -27,7 +27,6 @@ const updateAndFormat = (payload) => new Promise((resolve, reject) => {
   grabLanguageKey(payload.language).then((data) => {
     const langKey = { lang_id: data[0].firebaseKey };
     const newPayload = { ...langKey, ...payload };
-    console.warn(newPayload);
     updateCard(newPayload)
       .then(resolve)
       .catch(reject);

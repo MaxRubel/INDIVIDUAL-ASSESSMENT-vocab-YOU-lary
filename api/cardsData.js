@@ -72,7 +72,7 @@ const getCommunityCards = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CRUD FUNCTIONS
+// CRUD FUNCTIONS--->
 // CREATE CARD
 const addCard = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/cards.json`, {

@@ -2,8 +2,10 @@
 import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
 // import { showCards } from '../pages/cards';
-import { createLanguage, updateLanguage } from '../api/languageData';
+// import { createLanguage, updateLanguage } from '../api/languageData';
 import { addAndFormat, updateAndFormat } from '../api/mergedData';
+import { showCards } from '../pages/cards';
+import { getCards } from '../api/cardsData';
 
 const formEvents = (user) => {
   // UPDATE CARD
@@ -17,7 +19,7 @@ const formEvents = (user) => {
         uid: user.uid,
         firebaseKey
       };
-      updateAndFormat(payload);
+      updateAndFormat(payload).then(() => { getCards(user).then(showCards); });
     }
   });
 
@@ -39,20 +41,20 @@ const formEvents = (user) => {
       submitSuccess();
     }
     // SUBMIT/CREATE LANGUAGE
-    if (e.target.id.includes('submitLangButton')) {
-      const payload = {
-        language: document.querySelector('#language').value,
-        private: document.getElementById('private').checked,
-        uid: user.uid
-      };
-      createLanguage(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        updateLanguage(patchPayload).then(() => {
-        });
-      });
-      document.getElementById('submitCard').reset();
-      submitSuccess();
-    }
+    // if (e.target.id.includes('submitLangButton')) {
+    //   const payload = {
+    //     language: document.querySelector('#language').value,
+    //     private: document.getElementById('private').checked,
+    //     uid: user.uid
+    //   };
+    //   createLanguage(payload).then(({ name }) => {
+    //     const patchPayload = { firebaseKey: name };
+    //     updateLanguage(patchPayload).then(() => {
+    //     });
+    //   });
+    //   document.getElementById('submitCard').reset();
+    //   submitSuccess();
+    // }
   });
 };
 
