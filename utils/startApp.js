@@ -17,5 +17,4 @@ const startApp = (user) => {
   navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
   getCards(user).then(showCards);
 };
-
 export default startApp;

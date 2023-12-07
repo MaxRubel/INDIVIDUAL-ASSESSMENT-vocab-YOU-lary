@@ -1,25 +1,6 @@
 const endpoint = 'https://vocabcards-aeca9-default-rtdb.firebaseio.com';
 
-// GET USERS CARDS
-const getCards = (user) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cards.json?orderBy="uid"&equalTo="${user.uid}"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
+// GET ALL CARDS
 const getAllCards = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/cards.json`, {
     method: 'GET',
@@ -38,9 +19,9 @@ const getAllCards = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET COMMUNITY CARDS
-const getCommunityCards = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cards.json?orderBy="private"&equalTo=false`, {
+// GET USERS CARDS
+const getCards = (user) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json?orderBy="uid"&equalTo="${user.uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -71,6 +52,27 @@ const getSingleCard = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET COMMUNITY CARDS
+const getCommunityCards = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json?orderBy="private"&equalTo=false`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+// CRUD FUNCTIONS
 // CREATE CARD
 const addCard = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/cards.json`, {

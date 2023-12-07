@@ -14,7 +14,6 @@ const showCards = (array) => {
 
   let domString = '';
   if (array.length > 0) {
-    console.warn(array);
     array.forEach((card) => {
       domString += `
     <div class="card" style="width: 18rem;">

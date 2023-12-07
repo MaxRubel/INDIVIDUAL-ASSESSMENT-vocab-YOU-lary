@@ -1,8 +1,9 @@
-import { addCard, updateCard, getCards } from '../api/cardsData';
+// import { getCards } from '../api/cardsData';
 import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
-import { showCards } from '../pages/cards';
-import { createLanguage, updateLanguage, grabLanguageKey } from '../api/languageData';
+// import { showCards } from '../pages/cards';
+import { createLanguage, updateLanguage } from '../api/languageData';
+import { addAndFormat, updateAndFormat } from '../api/mergedData';
 
 const formEvents = (user) => {
   // UPDATE CARD
@@ -16,16 +17,14 @@ const formEvents = (user) => {
         uid: user.uid,
         firebaseKey
       };
-      updateCard(payload)
-        .then(getCards)
-        .then(showCards);
+      updateAndFormat(payload);
     }
   });
 
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // SUBMIT CARD
+    // SUBMIT/CREATE CARD
     if (e.target.id.includes('submitCard')) {
       const payload = {
         title: document.getElementById('title').value,
@@ -35,22 +34,11 @@ const formEvents = (user) => {
         private: document.getElementById('private').checked,
         uid: user.uid
       };
-      const addAndFormat = () => new Promise((resolve, reject) => {
-        grabLanguageKey(payload.language).then((data) => {
-          const langKey = { lang_id: data[0].firebaseKey };
-          addCard(payload).then(({ name }) => {
-            const firebaseKey = { firebaseKey: name };
-            const patchPayload = { ...firebaseKey, ...langKey };
-            console.warn(patchPayload);
-            updateCard(patchPayload).then(resolve);
-          }).catch(reject);
-        });
-      });
-      addAndFormat().then(() => {});
+      addAndFormat(payload).then(() => {});
       document.getElementById('submitCard').reset();
       submitSuccess();
     }
-    // SUBMIT LANGUAGE
+    // SUBMIT/CREATE LANGUAGE
     if (e.target.id.includes('submitLangButton')) {
       const payload = {
         language: document.querySelector('#language').value,
@@ -65,8 +53,6 @@ const formEvents = (user) => {
       document.getElementById('submitCard').reset();
       submitSuccess();
     }
-
-    // UPDATE CARD EVENT;
   });
 };
 
