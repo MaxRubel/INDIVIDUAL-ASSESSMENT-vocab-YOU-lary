@@ -1,15 +1,17 @@
 // import { getCards } from '../api/cardsData';
 import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
-// import { showCards } from '../pages/cards';
-// import { createLanguage, updateLanguage } from '../api/languageData';
-import { addAndFormat, updateAndFormat } from '../api/mergedData';
 import { showCards } from '../pages/cards';
+import { updateAndFormat, addAndFormat } from '../api/mergedData';
+// import { showCards } from '../pages/cards';
 import { getCards } from '../api/cardsData';
+import { getLangs, updateLanguage } from '../api/languageData';
+import showLanguages from '../pages/languages';
+import clearDom from '../utils/clearDom';
 
 const formEvents = (user) => {
   // UPDATE CARD
-  document.addEventListener('click', (e) => {
+  document.querySelector('#form-container').addEventListener('click', (e) => {
     if (e.target.id.includes('updateCardButton')) {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
@@ -20,6 +22,21 @@ const formEvents = (user) => {
         firebaseKey
       };
       updateAndFormat(payload).then(() => { getCards(user).then(showCards); });
+    }
+  });
+
+  // UPDATE LANGUAGE
+  document.querySelector('#languages').addEventListener('click', (e) => {
+    if (e.target.id.includes('updateButtonLang')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        language: document.getElementById('updateLangValue').value,
+        firebaseKey
+      };
+      updateLanguage(payload).then(() => {
+        clearDom();
+        getLangs(user).then(showLanguages);
+      });
     }
   });
 
@@ -40,28 +57,7 @@ const formEvents = (user) => {
       document.getElementById('submitCard').reset();
       submitSuccess();
     }
-    // SUBMIT/CREATE LANGUAGE
-    // if (e.target.id.includes('submitLangButton')) {
-    //   const payload = {
-    //     language: document.querySelector('#language').value,
-    //     private: document.getElementById('private').checked,
-    //     uid: user.uid
-    //   };
-    //   createLanguage(payload).then(({ name }) => {
-    //     const patchPayload = { firebaseKey: name };
-    //     updateLanguage(patchPayload).then(() => {
-    //     });
-    //   });
-    //   document.getElementById('submitCard').reset();
-    //   submitSuccess();
-    // }
   });
 };
 
 export default formEvents;
-
-// addCard(payload).then(({ name }) => {
-//   const patchPayload = { firebaseKey: name };
-//   updateCard(patchPayload).then(() => {
-//   });
-// });

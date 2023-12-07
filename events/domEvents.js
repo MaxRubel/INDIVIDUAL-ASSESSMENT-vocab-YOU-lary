@@ -10,6 +10,7 @@ import submitSuccess from '../utils/submitSuccess';
 import { showCards } from '../pages/cards';
 import addCardForm from '../components/forms/addCard';
 import showLanguages from '../pages/languages';
+import updateLangForm from '../components/forms/updateLangForm';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -25,6 +26,13 @@ const domEvents = (user) => {
     if (e.target.id.includes('update-card')) {
       const [, firebaseKey] = e.target.id.split('--');
       getSingleCard(firebaseKey).then((data) => { updateCardForm(data, user); });
+    }
+    // RENDER UPDATE LANGUAGE ENVIRONMENT
+    if (e.target.id.includes('update-lang')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getLangs(user).then((langs) => {
+        updateLangForm(langs, firebaseKey);
+      });
     }
     // DELETE CARD
     if (e.target.id.includes('delete-card')) {
