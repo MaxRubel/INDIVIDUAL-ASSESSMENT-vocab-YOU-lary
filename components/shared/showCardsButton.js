@@ -6,7 +6,6 @@ import { showCards } from '../../pages/cards';
 const backButton = (user) => {
   document.querySelector('#showCards').addEventListener('click', () => {
     getCards(user).then(showCards);
-    console.warn('cards shown');
   });
 };
 

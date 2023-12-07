@@ -2,7 +2,9 @@
 import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
 import { showCards } from '../pages/cards';
-import { updateAndFormat, addAndFormat } from '../api/mergedData';
+import {
+  updateAndFormat, addAndFormat, patchAllCardsbyLang
+} from '../api/mergedData';
 // import { showCards } from '../pages/cards';
 import { getCards } from '../api/cardsData';
 import { getLangs, updateLanguage } from '../api/languageData';
@@ -33,6 +35,7 @@ const formEvents = (user) => {
         language: document.getElementById('updateLangValue').value,
         firebaseKey
       };
+      patchAllCardsbyLang(payload);
       updateLanguage(payload).then(() => {
         clearDom();
         getLangs(user).then(showLanguages);

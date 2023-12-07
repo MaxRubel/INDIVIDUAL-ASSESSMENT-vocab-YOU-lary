@@ -72,6 +72,25 @@ const getCommunityCards = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ALL CARDS WITH SPECIFIC LANGUAGE
+const getCardLanguages = (langFirebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cards.json?orderBy="lang_id"&equalTo="${langFirebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 // CRUD FUNCTIONS--->
 // CREATE CARD
 const addCard = (payload) => new Promise((resolve, reject) => {
@@ -121,5 +140,6 @@ export {
   getCards,
   getSingleCard,
   deleteCard,
-  getAllCards
+  getAllCards,
+  getCardLanguages
 };
