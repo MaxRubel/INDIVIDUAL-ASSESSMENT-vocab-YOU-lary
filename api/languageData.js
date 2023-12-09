@@ -81,8 +81,8 @@ const deleteLangauge = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// MERGE DATA FUNCTION
-const grabLanguageKey = (language) => new Promise((resolve, reject) => {
+// GRAB SPECIFIC LANGAUGE INFO
+const grabSingleLanguage = (language) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages.json?orderBy="language"&equalTo="${language}"`, {
     method: 'GET',
     headers: {
@@ -105,6 +105,6 @@ export {
   updateLanguage,
   getLangs,
   getAllLangs,
-  grabLanguageKey,
+  grabSingleLanguage,
   deleteLangauge
 };
