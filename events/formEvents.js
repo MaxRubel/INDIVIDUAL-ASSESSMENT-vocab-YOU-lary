@@ -3,7 +3,8 @@ import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
 import { showCards } from '../pages/cards';
 import {
-  updateAndFormat, addAndFormat, patchAllCardsbyLang
+  updateAndFormat, addAndFormat,
+  patchAllCardsbyLang
 } from '../api/mergedData';
 // import { showCards } from '../pages/cards';
 import { getCards } from '../api/cardsData';
@@ -12,7 +13,7 @@ import showLanguages from '../pages/languages';
 import clearDom from '../utils/clearDom';
 
 const formEvents = (user) => {
-  document.querySelector('#main-container').addEventListener('submit', (e) => {
+  document.querySelector('#form-container').addEventListener('submit', (e) => {
     e.preventDefault();
 
     // SUBMIT/CREATE CARD
@@ -32,7 +33,6 @@ const formEvents = (user) => {
 
     // SUBMIT LANGUAGE
     if (e.target.id.includes('submitLang')) {
-      console.warn('clicked this button');
       const payload = {
         language: document.querySelector('#language').value,
         private: document.getElementById('private').checked,
@@ -50,13 +50,12 @@ const formEvents = (user) => {
     // UPDATE LANGUAGE
     if (e.target.id.includes('languageEdit')) {
       e.preventDefault();
-      console.warn('form submitted');
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
         language: document.getElementById('updateLangValue').value,
         firebaseKey
       };
-      patchAllCardsbyLang(payload);
+      patchAllCardsbyLang(payload).then();
       updateLanguage(payload).then(() => {
         clearDom();
         getLangs(user).then(showLanguages);
