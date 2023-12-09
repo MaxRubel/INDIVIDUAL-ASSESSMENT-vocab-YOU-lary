@@ -1,7 +1,7 @@
 import {
   getCards, addCard, updateCard, getCardLanguages
 } from './cardsData';
-import { getLangs, grabLanguageKey } from './languageData';
+import { getLangs, grabSingleLanguage } from './languageData';
 
 // GET CARD AND LANGUAGE DETAILS -- MERGE
 const getAllDetails = (user) => new Promise((resolve, reject) => {
@@ -14,9 +14,10 @@ const getAllDetails = (user) => new Promise((resolve, reject) => {
 
 // ADD LANG_ID TO CARD PAYLOAD THEN ADD CARD TO DATABASE
 const addAndFormat = (payload) => new Promise((resolve, reject) => {
-  grabLanguageKey(payload.language).then((data) => {
+  grabSingleLanguage(payload.language).then((data) => {
     const langKey = { lang_id: data[0].firebaseKey };
     addCard(payload).then(({ name }) => {
+      console.warn(payload);
       const firebaseKey = { firebaseKey: name };
       const patchPayload = { ...firebaseKey, ...langKey };
       updateCard(patchPayload).then(resolve);
@@ -26,7 +27,8 @@ const addAndFormat = (payload) => new Promise((resolve, reject) => {
 
 // ADD LANG_ID TO CARD PAYLOAD THEN PATCH CARD ON DATABASE
 const updateAndFormat = (payload) => new Promise((resolve, reject) => {
-  grabLanguageKey(payload.language).then((data) => {
+  grabSingleLanguage(payload.language).then((data) => {
+    console.warn(data);
     const langKey = { lang_id: data[0].firebaseKey };
     const newPayload = { ...langKey, ...payload };
 
@@ -73,5 +75,5 @@ export {
   updateAndFormat,
   patchAllCardsbyLang,
   getCardLanguages,
-  deleteLangData
+  deleteLangData,
 };

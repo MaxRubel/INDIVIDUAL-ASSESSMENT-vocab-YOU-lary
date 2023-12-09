@@ -14,15 +14,15 @@ import { deleteLangData } from '../api/mergedData';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
-    // RENDER ADD CARD FORM -- BUTTON PRESS
+    // RENDER ADD CARD FORM -- BUTTON CLICK
     if (e.target.id.includes('addACard')) {
       addCardForm(user);
     }
-    // RENDER ADD LANGUAGE FORM -- BUTTON PRESS
+    // RENDER ADD LANGUAGE FORM -- BUTTON CLICK
     if (e.target.id.includes('addALanguage')) {
       addLanguageForm(user);
     }
-    // RENDER UPDATE CARD FORM -- BUTTON PRESS
+    // RENDER UPDATE CARD FORM -- BUTTON CLICK
     if (e.target.id.includes('update-card')) {
       const [, firebaseKey] = e.target.id.split('--');
       getSingleCard(firebaseKey).then((data) => { updateCardForm(data, user); });
