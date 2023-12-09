@@ -20,6 +20,25 @@ const getLangs = (user) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET SINGLE LANGAUGE
+const grabSingleLanguage = (language) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/languages.json?orderBy="language"&equalTo="${language}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const getAllLangs = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/languages.json`, {
     method: 'GET',
@@ -78,25 +97,6 @@ const deleteLangauge = (firebaseKey) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
-    .catch(reject);
-});
-
-// GRAB SPECIFIC LANGAUGE INFO
-const grabSingleLanguage = (language) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/languages.json?orderBy="language"&equalTo="${language}"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
     .catch(reject);
 });
 
