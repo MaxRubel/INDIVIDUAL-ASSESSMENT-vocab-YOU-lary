@@ -50,7 +50,6 @@ const createLanguage = (payload) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => { console.warn(data); })
     .then((data) => resolve(data))
     .catch(reject);
 });

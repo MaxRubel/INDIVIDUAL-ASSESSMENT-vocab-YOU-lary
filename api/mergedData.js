@@ -17,7 +17,6 @@ const addAndFormat = (payload) => new Promise((resolve, reject) => {
   grabSingleLanguage(payload.language).then((data) => {
     const langKey = { lang_id: data[0].firebaseKey };
     addCard(payload).then(({ name }) => {
-      console.warn(payload);
       const firebaseKey = { firebaseKey: name };
       const patchPayload = { ...firebaseKey, ...langKey };
       updateCard(patchPayload).then(resolve);
@@ -28,7 +27,6 @@ const addAndFormat = (payload) => new Promise((resolve, reject) => {
 // ADD LANG_ID TO CARD PAYLOAD THEN PATCH CARD ON DATABASE
 const updateAndFormat = (payload) => new Promise((resolve, reject) => {
   grabSingleLanguage(payload.language).then((data) => {
-    console.warn(data);
     const langKey = { lang_id: data[0].firebaseKey };
     const newPayload = { ...langKey, ...payload };
 

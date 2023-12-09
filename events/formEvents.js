@@ -14,7 +14,7 @@ import {
 } from '../api/languageData';
 import showLanguages from '../pages/languages';
 import clearDom from '../utils/clearDom';
-import selectLanguage from '../components/forms/selectLanguage';
+// import selectLanguage from '../components/forms/selectLanguage';
 
 const formEvents = (user) => {
   document.querySelector('#form-container').addEventListener('submit', (e) => {
@@ -32,21 +32,23 @@ const formEvents = (user) => {
       };
       grabSingleLanguage(payload.language).then((data) => {
         if (data.length > 0) {
+          console.warn('this language exists');
           addAndFormat(payload).then();
           document.getElementById('submitCard').reset();
           submitSuccess();
         } else {
-          createLanguage({
-            language: payload.language,
-            private: payload.private,
-            uid: user.uid
-          }).then(({ name }) => {
+          createLanguage(
+            {
+              language: document.getElementById('languageSelect').value,
+              private: document.getElementById('private').checked,
+              uid: user.uid
+            }
+          ).then(({ name }) => {
             const patchPayload = { firebaseKey: name };
             updateLanguage(patchPayload).then(() => {
-              addAndFormat(payload);
+              addAndFormat(payload).then();
               document.getElementById('submitCard').reset();
               submitSuccess();
-              selectLanguage(user, '');
             });
           });
         }
