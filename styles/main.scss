@@ -162,6 +162,7 @@ gap: 5%;
 }
 
 .crudLang{
+  display: block;
   height: 30px;
 }
 
@@ -173,3 +174,13 @@ gap: 5%;
 .list-group{
   list-style-type: none;
 } 
+
+.submitLangButton{
+  background-color: transparent;
+  border-width: 0;
+  color: green;
+  height: 29px;
+  padding-bottom: 12px;
+  margin: 0;
+  
+}

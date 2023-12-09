@@ -14,9 +14,7 @@ const selectLanguage = (user, langId) => {
             ${langId === lang.firebaseKey ? 'selected' : ''}>${lang.language}
           </option>`;
     });
-
     domString += '</select>';
-
     renderToDom('#selectLanguage', domString);
   });
 };

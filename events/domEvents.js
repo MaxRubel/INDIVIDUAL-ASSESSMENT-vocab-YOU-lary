@@ -55,24 +55,6 @@ const domEvents = (user) => {
         });
       }
     }
-
-    // NEED TO MOVE -->
-    // ADD A LANGUAGE
-    // if (e.target.id.includes('submitLangButton')) {
-    //   console.warn('addedLanguage');
-    //   const payload = {
-    //     language: document.querySelector('#language').value,
-    //     private: document.getElementById('private').checked,
-    //     uid: user.uid
-    //   };
-    //   createLanguage(payload).then(({ name }) => {
-    //     const patchPayload = { firebaseKey: name };
-    //     updateLanguage(patchPayload).then(() => {
-    //     });
-    //   });
-    //   document.getElementById('submitCard').reset();
-    //   submitSuccess();
-    // }
   });
 };
 

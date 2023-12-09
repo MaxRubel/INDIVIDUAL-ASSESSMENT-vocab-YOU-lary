@@ -15,11 +15,11 @@ const updateLangForm = (array, firebaseKey) => {
   array.forEach((lang) => {
     if (lang.firebaseKey === firebaseKey) {
       domString += `
-      <form id="languageEdit">
+      <form id="languageEdit--${lang.firebaseKey}">
       <input type="text" class="form-control updateLangValue" id="updateLangValue" value="${lang.language}" required>
       <div class="crudLang">
         <a href="#" id="update-lang--${lang.firebaseKey}" class="card-link">Edit</a>
-        <button type="submit" value="submit" id="updateButtonLang--${lang.firebaseKey}" class="updateLang" class="submit">Submit</button>
+        <button type="submit" value="submit" id="updateButtonLang--${lang.firebaseKey}" class="submitLangButton"><u>Submit</u></button>
         <a href="#" id="delete-lang--${lang.firebaseKey}" class="deleteLang">Delete</a>
       </div>
       </form>`;
