@@ -5,8 +5,9 @@ import selectLanguage from './selectLanguage';
 
 const addCardForm = (user) => {
   clearDom();
-  const domString = `<div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div><form id="submitCard">
+  const domString = `<div id="showCards"><button id="showCards" type="button" class="btn btn-light">Show Cards</button></div>
   </div>
+  <form id="submitCard">
   <div class="card" style="width: 18rem;">
   <div class="card-body">
   <input type="text" class="form-control" id="title" placeholder="Title" required>

@@ -4,13 +4,13 @@ import {
 import updateCardForm from '../components/forms/updateCard';
 import addLanguageForm from '../components/forms/addALanguage';
 import {
-  createLanguage, getLangs, updateLanguage, deleteLangauge
+  getLangs, deleteLangauge
 } from '../api/languageData';
-import submitSuccess from '../utils/submitSuccess';
 import { showCards } from '../pages/cards';
 import addCardForm from '../components/forms/addCard';
 import showLanguages from '../pages/languages';
 import updateLangForm from '../components/forms/updateLangForm';
+import { deleteLangData } from '../api/mergedData';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -50,6 +50,7 @@ const domEvents = (user) => {
       if (window.confirm('Want to delete?')) {
         const [, firebaseKey] = e.target.id.split('--');
         deleteLangauge(firebaseKey).then(() => {
+          deleteLangData(firebaseKey);
           getLangs(user).then(showLanguages);
         });
       }
@@ -57,20 +58,21 @@ const domEvents = (user) => {
 
     // NEED TO MOVE -->
     // ADD A LANGUAGE
-    if (e.target.id.includes('submitLangButton')) {
-      const payload = {
-        language: document.querySelector('#language').value,
-        private: document.getElementById('private').checked,
-        uid: user.uid
-      };
-      createLanguage(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        updateLanguage(patchPayload).then(() => {
-        });
-      });
-      document.getElementById('submitCard').reset();
-      submitSuccess();
-    }
+    // if (e.target.id.includes('submitLangButton')) {
+    //   console.warn('addedLanguage');
+    //   const payload = {
+    //     language: document.querySelector('#language').value,
+    //     private: document.getElementById('private').checked,
+    //     uid: user.uid
+    //   };
+    //   createLanguage(payload).then(({ name }) => {
+    //     const patchPayload = { firebaseKey: name };
+    //     updateLanguage(patchPayload).then(() => {
+    //     });
+    //   });
+    //   document.getElementById('submitCard').reset();
+    //   submitSuccess();
+    // }
   });
 };
 

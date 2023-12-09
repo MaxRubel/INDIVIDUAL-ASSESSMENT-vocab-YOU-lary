@@ -40,10 +40,25 @@ const updateAndFormat = (payload) => new Promise((resolve, reject) => {
 const patchAllCardsbyLang = (payload) => new Promise((resolve, reject) => {
   getCardLanguages(payload.firebaseKey).then((cards) => {
     cards.forEach((card) => {
-      console.warn(card);
       updateCard(
         {
           language: payload.language,
+          firebaseKey: card.firebaseKey
+        }
+      );
+    });
+  }).then(resolve)
+    .then(reject);
+});
+
+// DELETE LANGUAGES OFF CARDS THAT POSSESS THAT LANGUAGE
+const deleteLangData = (firebaseKey) => new Promise((resolve, reject) => {
+  getCardLanguages(firebaseKey).then((cards) => {
+    cards.forEach((card) => {
+      updateCard(
+        {
+          language: 'No Language Selected',
+          lang_id: null,
           firebaseKey: card.firebaseKey
         }
       );
@@ -57,5 +72,6 @@ export {
   getAllDetails,
   updateAndFormat,
   patchAllCardsbyLang,
-  getCardLanguages
+  getCardLanguages,
+  deleteLangData
 };

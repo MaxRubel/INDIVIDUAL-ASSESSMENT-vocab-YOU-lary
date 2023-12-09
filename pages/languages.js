@@ -15,12 +15,14 @@ const showLanguages = (array) => {
   let domString = '';
   array.forEach((lang) => {
     domString += `
-    <li class="list-group-item">${lang.language}
-      <div class="crudLang">
+    <li class="list-group-item-og">
+    <div class="langTitle">${lang.language}
+    </div>  
+    <div class="crudLang">
         <a href="#" id="update-lang--${lang.firebaseKey}" class="card-link">Edit</a>
         <a href="#" id="delete-lang--${lang.firebaseKey}" class="deleteLang">Delete</a>
-    </li>
-      </div>`;
+      </div>
+      </li>`;
   });
   renderToDom('#langaugeList', domString);
 };
