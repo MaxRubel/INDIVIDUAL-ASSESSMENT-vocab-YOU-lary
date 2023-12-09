@@ -34,10 +34,11 @@ const selectLanguage = (user, langId) => {
     }
   });
 
-  // EVENT LISTENER TO GO BACK TO SELECT
+  // EVENT LISTENER TO GO BACK TO DROPDOWN SELECT LANGUAGE
   document.getElementById('form-container').addEventListener('keyup', (e) => {
     if (e.target.id === 'languageSelect') {
       if (e.key === 'Backspace' && document.getElementById('languageSelect').value.length === 0) {
+        console.warn('backspace');
         createDropDownBar();
       }
     }
