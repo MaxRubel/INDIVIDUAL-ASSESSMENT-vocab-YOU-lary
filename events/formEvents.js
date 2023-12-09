@@ -14,7 +14,7 @@ import {
 } from '../api/languageData';
 import showLanguages from '../pages/languages';
 import clearDom from '../utils/clearDom';
-// import selectLanguage from '../components/forms/selectLanguage';
+import selectLanguage from '../components/forms/selectLanguage';
 
 const formEvents = (user) => {
   document.querySelector('#form-container').addEventListener('submit', (e) => {
@@ -32,10 +32,10 @@ const formEvents = (user) => {
       };
       grabSingleLanguage(payload.language).then((data) => {
         if (data.length > 0) {
-          console.warn('this language exists');
           addAndFormat(payload).then();
           document.getElementById('submitCard').reset();
           submitSuccess();
+          selectLanguage(user, '');
         } else {
           createLanguage(
             {
@@ -49,6 +49,7 @@ const formEvents = (user) => {
               addAndFormat(payload).then();
               document.getElementById('submitCard').reset();
               submitSuccess();
+              selectLanguage(user, '');
             });
           });
         }
@@ -70,6 +71,7 @@ const formEvents = (user) => {
       document.getElementById('submitLang').reset();
       submitSuccess();
     }
+
     // UPDATE CARD
     if (e.target.id.includes('updateCard')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -82,31 +84,29 @@ const formEvents = (user) => {
       };
       grabSingleLanguage(payload.language).then((data) => {
         if (data.length > 0) {
+          // this lang exists
           updateAndFormat(payload).then(() => {
             getCards(user).then(showCards);
           });
         } else {
+          // this lang needs to be created and added to the card
           createLanguage({
             language: payload.language,
             private: payload.private,
             uid: user.uid
-          });
-          // .then(({ name }) => {
-          //   const patchPayload = { firebaseKey: name };
-          //   updateLanguage(patchPayload).then(data);
-          // });
-          // .then(({ name }) => {
-          //   const patchPayload = { firebaseKey: name };
-          //   updateLanguage(patchPayload).then((data) => {
-          //     console.warn(data);
-          //     // updateAndFormat(payload);
-          //     // getCards(user).then(showCards);
-          //   });
-          // });
+          })
+            .then(({ name }) => {
+              const patchPayload = { firebaseKey: name };
+              updateLanguage(patchPayload).then(() => {
+                updateAndFormat(payload).then(() => {
+                  getCards(user).then(showCards);
+                });
+              });
+            });
         }
       });
-      updateAndFormat(payload).then(() => { getCards(user).then(showCards); });
     }
+
     // UPDATE LANGUAGE
     if (e.target.id.includes('languageEdit')) {
       e.preventDefault();
@@ -122,19 +122,5 @@ const formEvents = (user) => {
       });
     }
   });
-  // UPDATE CARD
-  // document.querySelector('#form-container').addEventListener('submit', (e) => {
-  //   if (e.target.id.includes('updateCardButton')) {
-  //     const [, firebaseKey] = e.target.id.split('--');
-  //     const payload = {
-  //       title: document.querySelector('#title').value,
-  //       language: document.getElementById('languageSelect').value,
-  //       definition: document.querySelector('#definition').value,
-  //       uid: user.uid,
-  //       firebaseKey
-  //     };
-  //     updateAndFormat(payload).then(() => { getCards(user).then(showCards); });
-  //   }
-  // });
 };
 export default formEvents;
