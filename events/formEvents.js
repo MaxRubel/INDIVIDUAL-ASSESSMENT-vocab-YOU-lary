@@ -39,8 +39,8 @@ const formEvents = (user) => {
         } else {
           createLanguage(
             {
-              language: document.getElementById('languageSelect').value,
-              private: document.getElementById('private').checked,
+              language: payload.language,
+              private: payload.private,
               uid: user.uid
             }
           ).then(({ name }) => {
@@ -84,12 +84,10 @@ const formEvents = (user) => {
       };
       grabSingleLanguage(payload.language).then((data) => {
         if (data.length > 0) {
-          // this lang exists
           updateAndFormat(payload).then(() => {
             getCards(user).then(showCards);
           });
         } else {
-          // this lang needs to be created and added to the card
           createLanguage({
             language: payload.language,
             private: payload.private,
