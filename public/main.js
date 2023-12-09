@@ -5,6 +5,9 @@ import ViewDirectorBasedOnUserAuthStatus from '../utils/viewDirector';
 
 const init = () => {
   ViewDirectorBasedOnUserAuthStatus();
+  document.addEventListener('click', (e) => {
+    console.warn(e);
+  });
 };
 
 init();

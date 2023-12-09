@@ -7,27 +7,32 @@ const updateLangForm = (array, firebaseKey) => {
   renderToDom('#addCardButton', btnString);
   const cardLayout = `
     <div class="card" id="" style="width: 18rem;">
-      <ul class="list-group list-group-flush" id="langaugeList">
-      </ul>
+    <ul class="list-group list-group-flush" id="langaugeList">
+    </ul> 
     </div>`;
-  renderToDom('#languages', cardLayout);
+  renderToDom('#form-container', cardLayout);
   let domString = '';
   array.forEach((lang) => {
     if (lang.firebaseKey === firebaseKey) {
-      domString += `<li class="list-group-item"><input type="text" class="form-control" id="updateLangValue" value="${lang.language}" required>
+      domString += `
+      <form id="languageEdit">
+      <input type="text" class="form-control updateLangValue" id="updateLangValue" value="${lang.language}" required>
       <div class="crudLang">
         <a href="#" id="update-lang--${lang.firebaseKey}" class="card-link">Edit</a>
-        <a href="#" id="updateButtonLang--${lang.firebaseKey}" class="updateLang">Submit</a>
-    </li>
-      </div>`;
+        <button type="submit" value="submit" id="updateButtonLang--${lang.firebaseKey}" class="updateLang" class="submit">Submit</button>
+        <a href="#" id="delete-lang--${lang.firebaseKey}" class="deleteLang">Delete</a>
+      </div>
+      </form>`;
     } else if (lang.firebaseKey !== firebaseKey) {
       domString += `
-    <li class="list-group-item">${lang.language}
-      <div class="crudLang">
+    <li class="list-group-item-og">
+    <div class="langTitle">${lang.language}
+    </div>  
+    <div class="crudLang">
         <a href="#" id="update-lang--${lang.firebaseKey}" class="card-link">Edit</a>
         <a href="#" id="delete-lang--${lang.firebaseKey}" class="deleteLang">Delete</a>
-    </li>
-      </div>`;
+      </div>
+      </li>`;
     }
   });
   renderToDom('#langaugeList', domString);
