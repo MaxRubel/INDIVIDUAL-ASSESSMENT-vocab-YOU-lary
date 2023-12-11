@@ -1,4 +1,3 @@
-// import { getCards } from '../api/cardsData';
 import submitSuccess from '../utils/submitSuccess';
 import timeSubmitted from '../utils/timeSubmitted';
 import { showCards } from '../pages/cards';

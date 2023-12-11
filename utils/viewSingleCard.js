@@ -1,5 +1,5 @@
 import clearDom from './clearDom';
-import backButton from '../components/shared/backButton';
+import backButton from '../components/shared/showCardsButton';
 import renderToDom from './renderToDom';
 
 const updateCardForm = (user, card) => {
