@@ -6,24 +6,22 @@ body {
   background: linear-gradient(to top, #003f69 0%, #3674B3 100%);
   color: white;
   text-align: center;
-  margin-top: 100px;
   background-repeat: no-repeat;
 }
 
 #landingPage{
   display: flex;
   flex-direction: column;
-  height: 550px;
 }
 
 .welcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-size: xx-large;
   margin-bottom: 5%;
-}
-
-.dogDiph{
-  border-radius: 50%;
-  border: 1px solid black
+  margin-top: 5%
 }
 
 #loginButton{
@@ -31,7 +29,7 @@ body {
 }
 
 .login{
-  margin-top: 3%;
+  margin-top: 4%;
 }
 
 @media (min-width: 768px) {
